@@ -13,8 +13,8 @@ const pipeline = util.promisify(stream.pipeline);
 const actions = async _ => {
     const { input, output, action } = program.opts();
 
-    if (action !== 'find') {
-        process.stderr.write(`Action must be "find"\n`);
+    if (action !== 'find' && action !== 'add') {
+        process.stderr.write(`Action must be "find" or "add" \n`);
         process.exit(1);
     }
 

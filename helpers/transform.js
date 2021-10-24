@@ -1,5 +1,6 @@
 const { Transform } = require("stream");
 const { findNumber  } = require('./code');
+const { matrixAddition  } = require('./code');
 
 class StrTranform extends Transform {
   constructor(action) {
@@ -12,8 +13,12 @@ class StrTranform extends Transform {
 
     switch (this.action) {
       case 'find':
-        result = findNumber(chunk.toString('utf8'), this.shift);
+        result = findNumber(chunk.toString('utf8'));
         break;
+        case 'add':
+            result = matrixAddition(chunk.toString('utf8'));
+            break;
+              
       default:
         process.stderr.write(' Erorr: Action not found\n');
         process.exit(1);
