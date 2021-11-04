@@ -8,15 +8,15 @@ class StrTranform extends Transform {
     this.action = action;
   }
 
-  _transform(chunk, _, done) {
+  _transform(chunk, enc, done) {
     let result = '';
 
     switch (this.action) {
       case 'find':
-        result = findNumber(chunk.toString('utf8'));
+        result = findNumber(chunk.toString());
         break;
         case 'add':
-            result = matrixAddition(chunk.toString('utf8'));
+            result = matrixAddition(chunk.toString());
             break;
               
       default:

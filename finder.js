@@ -10,7 +10,7 @@ const StrTranform = require('./helpers/transform');
 
 const pipeline = util.promisify(stream.pipeline);
 
-const actions = async _ => {
+const actions = async()=> {
     const { input, output, action } = program.opts();
 
     if (action !== 'find' && action !== 'add') {
@@ -20,14 +20,13 @@ const actions = async _ => {
 
     validator.isEmpty(input) && process.stdout.write('Enter the text and press ENTER to find numbers | press CTRL + C to exit: ')
 
-    const ReadableStream = !validator.isEmpty(input) ? fs.createReadStream(input) : process.stdin;
-    const WriteableStream = !validator.isEmpty(output) ? fs.createWriteStream((output), { flags: 'a' }) : process.stdout;
-
     try {
       await pipeline(
-        ReadableStream,
+        !validator.isEmpty(input) ? fs.createReadStream(input) : process.stdin,
         new StrTranform(action),
-        WriteableStream
+        !validator.isEmpty(output) 
+         ? fs.createWriteStream((output), { flags: 'a' })
+         : process.stdout
       );
       process.stdout.write(`Text ${action}d\n`);
     } catch (e) {
