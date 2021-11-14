@@ -1,5 +1,5 @@
 const express = require('express');
-const userRouter = require('./resources/users/user.router');
+const directorRouter = require('./resources/directors/director.router');
 
 const app = express();
 
@@ -13,6 +13,6 @@ app.use('/', (req, res, next) => {
   next();
 });
 
-app.use('/users', userRouter);
+app.use('/directors', directorRouter);
 
 module.exports = app;
