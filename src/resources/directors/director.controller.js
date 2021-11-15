@@ -9,7 +9,7 @@ exports.create = catchErrors(async (req, res) => {
   if (!director) {
     return res
       .status(StatusCodes.BAD_REQUEST)
-      .json({ code: 'USER_NOT_CREATE', msg: 'User not create' });
+      .json({ code: 'Director_NOT_CREATE', msg: 'Director not create' });
   }
   return res
     .status(StatusCodes.CREATED)
@@ -25,7 +25,7 @@ exports.getById = catchErrors(async (req, res) => {
   if (!director) {
     return res
       .status(StatusCodes.NOT_FOUND)
-      .json({ code: 'USER_NOT_FOUND', msg: 'User not found' });
+      .json({ code: 'Director_NOT_FOUND', msg: 'Director not found' });
   }
   return res.status(StatusCodes.OK).json(Director.toResponse(director));
 });
@@ -35,7 +35,7 @@ exports.updateById = catchErrors(async (req, res) => {
   if (!director) {
     return res
       .status(StatusCodes.NOT_FOUND)
-      .json({ code: 'USER_NOT_FOUND', msg: 'User not found' });
+      .json({ code: 'Director_NOT_FOUND', msg: 'Director not found' });
   }
   return res.status(StatusCodes.OK).json(director && Director.toResponse(director));
 });
@@ -45,7 +45,7 @@ exports.deleteById = catchErrors(async (req, res) => {
   if (!director) {
     return res
       .status(StatusCodes.NOT_FOUND)
-      .json({ code: 'USER_NOT_FOUND', msg: 'User not found' });
+      .json({ code: 'Director_NOT_FOUND', msg: 'Director not found' });
   }
   return res.status(StatusCodes.OK).json(Director.toResponse(director));
 });
