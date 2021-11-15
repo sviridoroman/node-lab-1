@@ -31,7 +31,7 @@ class Film {
   }
 
   static async getAllByDirectorId(directorId) {
-    const films = await filmsRepo.getAllByDirevtordId(directorId);
+    const films = await filmsRepo.getAllByDirectorId(directorId);
     return films;
   }
 
@@ -56,6 +56,12 @@ class Film {
  
 
     return this;
+  }
+
+  static async findAll(callback) {
+    if (typeof callback !== 'function') return null;
+    const films = await filmsRepo.getAll();
+    return films.filter(callback);
   }
 
   clone() {

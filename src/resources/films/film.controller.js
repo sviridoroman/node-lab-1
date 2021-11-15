@@ -22,7 +22,7 @@ exports.getAll = catchErrors(async (req, res) => {
 });
 
 exports.getAllByDirectorId = catchErrors(async (req, res) => {
-  const film = await filmsService.getAllByDirectorId();
+  const film = await filmsService.getAllByDirectorId(req.params);
   return res.status(StatusCodes.OK).json(film.map(Film.toResponse));
 });
 
