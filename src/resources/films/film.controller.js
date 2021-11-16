@@ -18,12 +18,22 @@ exports.create = catchErrors(async (req, res) => {
 
 exports.getAll = catchErrors(async (req, res) => {
   const film = await filmsService.getAll();
+  if (film.length==0) {
+    return res
+      .status(StatusCodes.NOT_FOUND)
+      .json({ code: 'Films_NOT_FOUND', msg: 'Films not found' });
+  }
   return res.status(StatusCodes.OK).json(film.map(Film.toResponse));
 });
 
 exports.getAllByDirectorId = catchErrors(async (req, res) => {
-  const film = await filmsService.getAllByDirectorId(req.params);
-  return res.status(StatusCodes.OK).json(film.map(Film.toResponse));
+  const films = await filmsService.getAllByDirectorId(req.params.directorId);
+  if (films.length==0) {
+    return res
+      .status(StatusCodes.NOT_FOUND)
+      .json({ code: 'Films_NOT_FOUND', msg: 'Films not found' });
+  }
+  return res.status(StatusCodes.OK).json(films.map(Film.toResponse));
 });
 
 exports.getById = catchErrors(async (req, res) => {

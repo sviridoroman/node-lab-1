@@ -14,7 +14,7 @@ const getAll = () => Film.getAll();
 
 const getById = (id) => Film.getById(id);
 
-const getAllByDirectorId = ({directorid}) => Film.getAllByDirectorId(directorid);
+const getAllByDirectorId = (directorid) => Film.getAllByDirectorId(directorid);
 
 const updateById = async (id, newfilm) => Film.updateById(id, newfilm);
 
